@@ -2,7 +2,29 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <header class="header">
+        <h1>Current Page Name</h1>
+        <p>This section will change and tell you what page you are on!</p>
+    </header>
+</div>
+
+<div class="container">
+    <!-- The left sidebar -->
+    <div class="sidebar left">
+        <h2>Sections Sidebar</h2>
+        <p>All sections related to the currently selected language will be displayed here!</p>
+    </div>
+
+    <!-- Section for most webpage content -->
+    <div class="content">
+        <h2>Page Content</h2>
+        <p>All of the current webpage's content should be displayed here!</p>
+    </div>
+
+    <!-- The right sidebar -->
+    <div class="sidebar right">
+        <h2>Bookmarks Sidebar</h2>
+        <p>This sidebar will display all bookmarks of the current logged in user!</p>
+    </div>
 </div>
