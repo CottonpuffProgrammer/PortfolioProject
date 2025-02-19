@@ -1,31 +1,103 @@
+/* The following code came with the creation of the MVC project. */
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+    color: var(--bs-secondary-color);
+    text-align: end;
 }
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+    text-align: start;
+}
+
+
+
+/* The following code is everything typed after project creation. */
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    position: relative;
+    flex-direction: column;
+}
+
+/* Styles the header. */
+.header {
+    background-color: gray;
+    flex: 1;
+    color: white;
+    width: 200%;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px 10px 10px 10px;
+}
+
+/* Styles containers in the layout, mostly used for centering items. */
+.container {
+    display: flex;
+    width: 200%;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Styles everything in the left and right sidebars. */
+.sidebar {
+    background-color: gray;
+    flex: 1;
+    color: white;
+    width: 250px;
+    padding: 20px;
+    height: 100vh;
+    border-radius: 10px 10px 10px 10px;
+}
+
+/* Moves something to the left. */
+.left {
+    margin-right: 10px;
+}
+
+/* Moves something to the right. */
+.right {
+    margin-left: 10px;
+}
+
+/* Styles everything located in the middle of a webpage. */
+.content {
+    background-color: gray;
+    flex: 2;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    width: calc(100% - 520px);
+    margin: 0 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+h1 {
+    color: white;
 }
