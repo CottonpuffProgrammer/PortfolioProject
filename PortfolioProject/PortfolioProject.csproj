@@ -15,4 +15,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Sections\HTML\" />
+    <Folder Include="Views\Sections\CSS\" />
+    <Folder Include="Views\Sections\Javascript\" />
+    <Folder Include="Views\Sections\" />
+  </ItemGroup>
+
 </Project>
