@@ -22,5 +22,9 @@ namespace PortfolioProject.Controllers
         {
             return View();
         }
+        public IActionResult Test()
+        {
+            return RedirectToAction("HTMLIndex");
+        }
     }
 }
