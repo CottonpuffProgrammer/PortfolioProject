@@ -2,34 +2,24 @@
 
 namespace PortfolioProject.Models
 {
-    /// <summary>
-    /// Represents a singular bookmark
-    /// </summary>
+    // Represents a singular bookmark
     public class Bookmark
     {
-        /// <summary>
-        /// Uniquely identifies each bookmark in the database
-        /// </summary>
+        // Uniquely identifies each bookmark in the database
         [Key]
         public int BookmarkId { get; set; }
 
-        /// <summary>
-        /// The user associated with the bookmark
-        /// </summary>
+        // The user associated with the bookmark
         [Required]
         public string UserId { get; set; }
 
-        /// <summary>
-        /// The internal name of the bookmark, will help provide
-        /// a working clickable link when displayed on a webpage
-        /// </summary>
+        // The internal name of the bookmark, will help provide
+        // a working clickable link when displayed on a webpage
         [Required]
         public string BookmarkName { get; set; }
 
-        /// <summary>
-        /// The name of the bookmark that is displayed on
-        /// a webpage
-        /// </summary>
+        // The name of the bookmark that is displayed on
+        // a webpage
         [Required]
         public string BookmarkDisplay { get; set; }
     }
