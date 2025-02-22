@@ -1,12 +1,12 @@
 ﻿@model PortfolioProject.Models.SectionsBookmarksViewModel
 
 @{
-    ViewData["Title"] = "HTML Elements";
+    ViewData["Title"] = "HTML Attributes";
 }
 
 <div class="container">
     <header class="header">
-        <h1>HTML Elements</h1>
+        <h1>HTML Attributes</h1>
     </header>
 </div>
 
@@ -40,39 +40,31 @@
 
     <!-- Section for most webpage content -->
     <div class="content">
-        <h2>What are HTML Elements?</h2>
+        <h2>What are HTML Attributes?</h2>
         <p>
-            HTML elements are the building blocks of a web page. An HTML element defines a piece of content on the page and how it should be displayed by the browser. 
-            Each element is made up of tags, which tell the browser how to structure and display the content.
+            HTML attributes provide additional information about an HTML element. 
+            They are used to configure the behavior or appearance of elements and are always placed within the opening tag of an element. 
+            Attributes define properties like a link’s destination, an image's source, or a form element's placeholder text.
         </p>
-        <p>
-            An HTML element typically consists of three parts:
-        </p>
+        <p>Common HTML Attributes include:</p>
         <ul>
-            <li>Opening Tag: The start of the element, usually containing the element’s name. It tells the browser that the element begins here.</li>
+            <li>href (for links)</li>
 
-            <li>Content: The actual data or content inside the element. This can be text, images, links, or other elements.</li>
+            <li>src (for images)</li>
 
-            <li>Closing Tag: The end of the element, indicating where the element finishes. It’s similar to the opening tag, but with a slash (/) before the element name.</li>
-        </ul>
+            <li>alt (for images)</li>
 
-        <p>There are many types of HTML elements, to name a few:</p>
-        <ul>
-            <li>Structural Elements: These elements help structure the layout of a webpage.</li>
+            <li>class (for styling and JavaScript)</li>
 
-            <li>Text Elements: These elements define and format text on the page.</li>
+            <li>id (for unique identification)</li>
 
-            <li>Link and Navigation Elements: These elements create clickable links to navigate between pages or websites.</li>
+            <li>style (for inline styling)</li>
 
-            <li>Image and Media Elements: These elements are used to embed images, videos, audio, etc.</li>
-
-            <li>List Elements: These elements are used to display lists of items.</li>
-
-            <li>And many more! (Soon to be added!)</li>
+            <li>And more! (Will be added soon!)</li>
         </ul>
 
         <p>
-            Understanding HTML elements is key to building and structuring any webpage, as they dictate how content is displayed in the browser.
+            Understanding how to use HTML attributes effectively is key to controlling how elements look and behave on your webpage.
         </p>
     </div>
 
