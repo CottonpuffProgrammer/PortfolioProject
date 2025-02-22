@@ -71,9 +71,10 @@ namespace PortfolioProject.Controllers
         }
 
         // All CSS related webpages can be found below
-        public IActionResult CSSIndex()
+        public async Task<IActionResult> CSSIndex(SectionsBookmarksViewModel viewModel)
         {
-            return View();
+            viewModel = await CreateViewModel("CSS");
+            return View(viewModel);
         }
 
         // All Javascript related webpages can be found below
@@ -251,6 +252,16 @@ namespace PortfolioProject.Controllers
             a.SectionType = "HTML";
             a.SectionName = "HTMLDivs";
             a.SectionDisplay = "HTML Divs";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds CSS Introduction section
+            a.SectionType = "CSS";
+            a.SectionName = "CSSIndex";
+            a.SectionDisplay = "CSS Introduction";
             _context.Add(a);
             _context.SaveChanges();
 

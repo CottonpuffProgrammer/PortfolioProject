@@ -1,11 +1,12 @@
-﻿@{
+﻿@model PortfolioProject.Models.SectionsBookmarksViewModel
+
+@{
     ViewData["Title"] = "CSS Introduction";
 }
 
 <div class="container">
     <header class="header">
-        <h1>CSS</h1>
-        <p>Welcome to the CSS Introduction!</p>
+        <h1>CSS Introduction</h1>
     </header>
 </div>
 
@@ -13,18 +14,89 @@
     <!-- The left sidebar -->
     <div class="sidebar left">
         <h2>CSS Sections</h2>
-        <p>This text should become a vertical list of all CSS sections as they are added!</p>
+        <ul>
+            @{
+                // If there are no sections
+                if (@Model?.Sections == null)
+                {
+                    <li>
+                        No sections to display!
+                    </li>
+                }
+                else
+                {
+                    // For every section that needs to be displayed
+                    foreach (Section s in @Model?.Sections)
+                    {
+                        // Creates a clickable that takes you to the specified section
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
     </div>
 
     <!-- Section for most webpage content -->
     <div class="content">
-        <h2>Welcome!</h2>
-        <p>This should contain a blurb of what CSS is and that you can do with it on a very general basis.</p>
+        <h2>What is CSS?</h2>
+        <p>
+            CSS (Cascading Style Sheets) is a styling language used to define the look and feel of a website or web application. 
+            It works alongside HTML (which structures the content) to create visually engaging layouts by specifying how HTML elements should appear on the screen.
+        </p>
+        <p>
+            With CSS, you can control various visual aspects, such as:
+        </p>
+
+        <ol>
+            <li>
+                Colors: Set the color of text, backgrounds, and other elements.
+            </li>
+            <li>
+                Fonts: Choose the type, size, and style of text.
+            </li>
+            <li>
+                Spacing: Control margins, padding, and the distance between elements.
+            </li>
+            <li>
+                Layout: Position elements in a grid, flexbox, or other layout models.
+            </li>
+            <li>
+                Borders: Customize the thickness, style, and color of borders.
+            </li>
+            <li>
+                Animations and Transitions: Add movement or changes in elements when users interact with them.
+            </li>
+        </ol>
+
+        <p> (Add Examples later!)</p>
     </div>
 
     <!-- The right sidebar -->
     <div class="sidebar right">
         <h2>Bookmarks Sidebar</h2>
-        <p>This sidebar will display all bookmarks of the current logged in user!</p>
+        <ul>
+            @{
+                // If there are no bookmarks
+                if (@Model?.Bookmarks == null)
+                {
+                    <li>
+                        No bookmarks to display!
+                    </li>
+                }
+                else
+                {
+                    // For every bookmark that needs to be displayed
+                    foreach (Bookmark b in @Model?.Bookmarks)
+                    {
+                        // Creates a clickable that takes you to the specified bookmark
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
     </div>
 </div>
