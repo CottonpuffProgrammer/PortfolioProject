@@ -34,6 +34,12 @@ namespace PortfolioProject.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> HTMLAttributes(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("HTML");
+            return View(viewModel);
+        }
+
         // All CSS related webpages can be found below
         public IActionResult CSSIndex()
         {
@@ -121,6 +127,8 @@ namespace PortfolioProject.Controllers
             return viewModel;
         }
 
+        // A temporary test method for adding data to test 
+        // section functionality, is meant to be long due to its purpose
         public IActionResult AddTestData()
         {
             // Clears all currently added Sections
@@ -153,6 +161,16 @@ namespace PortfolioProject.Controllers
             a.SectionType = "HTML";
             a.SectionName = "HTMLElements";
             a.SectionDisplay = "HTML Elements";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds HTML Attributes section
+            a.SectionType = "HTML";
+            a.SectionName = "HTMLAttributes";
+            a.SectionDisplay = "HTML Attributes";
             _context.Add(a);
             _context.SaveChanges();
 
