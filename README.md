@@ -1,5 +1,7 @@
 # Website Overview
 
+--------------------------------------------------
+
 ## The Goal:
 
 The goal of my project is to create a website where people can create an account and bookmark possibly helpful coding resources. For now, this can be chalked up to basic explanations of certains concepts of a couple of coding languages, but I do hope to add some examples and images or other media to help people understand the concepts more. I am working on this alone so it might not be nearly as helpful as other established coding websites, but the goal is to make a website similar to those.
@@ -7,6 +9,8 @@ The goal of my project is to create a website where people can create an account
 --------------------------------------------------
 
 # Website Progress
+
+--------------------------------------------------
 
 ## Week 2 (1st Sprint):
 
@@ -24,6 +28,8 @@ basic introduction pages for each section.
 
 - Added a SectionsController and some navigation 
 buttons to move between sections.
+
+--------------------------------------------------
 
 ## Week 3 (2nd Sprint):
 
@@ -50,6 +56,8 @@ objects depending on the displayed webpage.
 functionality was completed.
 
 - Added Test Button to add test data to the website.
+
+--------------------------------------------------
 
 ## Week 4 (3rd Sprint):
 
