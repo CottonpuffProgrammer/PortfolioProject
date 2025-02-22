@@ -46,6 +46,12 @@ namespace PortfolioProject.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> HTMLComments(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("HTML");
+            return View(viewModel);
+        }
+
         // All CSS related webpages can be found below
         public IActionResult CSSIndex()
         {
@@ -187,6 +193,16 @@ namespace PortfolioProject.Controllers
             a.SectionType = "HTML";
             a.SectionName = "HTMLStyles";
             a.SectionDisplay = "HTML Styles";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds HTML Comments section
+            a.SectionType = "HTML";
+            a.SectionName = "HTMLComments";
+            a.SectionDisplay = "HTML Comments";
             _context.Add(a);
             _context.SaveChanges();
 
