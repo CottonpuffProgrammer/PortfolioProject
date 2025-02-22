@@ -8,8 +8,6 @@ The goal of my project is to create a website where people can create an account
 
 # Website Progress
 
---------------------------------------------------
-
 ## Week 2 (1st Sprint):
 
 ### 1/21/2025 - 2 hours:
