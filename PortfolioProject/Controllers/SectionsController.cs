@@ -21,17 +21,26 @@ namespace PortfolioProject.Controllers
             _userManager = userManager;
         }
 
+        // All HTML related webpages can be found below
         public async Task<IActionResult> HTMLIndex(SectionsBookmarksViewModel viewModel)
         {
             viewModel = await CreateViewModel("HTML");
             return View(viewModel);
         }
 
+        public async Task<IActionResult> HTMLElements(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("HTML");
+            return View(viewModel);
+        }
+
+        // All CSS related webpages can be found below
         public IActionResult CSSIndex()
         {
             return View();
         }
 
+        // All Javascript related webpages can be found below
         public IActionResult JavascriptIndex()
         {
             return View();
@@ -112,12 +121,13 @@ namespace PortfolioProject.Controllers
             return viewModel;
         }
 
-        public async Task<IActionResult> AddTestData()
+        public IActionResult AddTestData()
         {
             // Clears all currently added Sections
             foreach (Section s in _context.Sections)
             {
                 _context.Remove(s);
+                _context.SaveChanges();
             }
 
             // The following code adds all Sections to the database for the
@@ -134,9 +144,17 @@ namespace PortfolioProject.Controllers
             a.SectionName = "HTMLIndex";
             a.SectionDisplay = "HTML Introduction";
             _context.Add(a);
+            _context.SaveChanges();
 
-            // Saves changes to database, must happen last
-            await _context.SaveChangesAsync();
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds HTML Elements section
+            a.SectionType = "HTML";
+            a.SectionName = "HTMLElements";
+            a.SectionDisplay = "HTML Elements";
+            _context.Add(a);
+            _context.SaveChanges();
 
             // Sends you to a page confirming you added test data
             return View();

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PortfolioProject.Models
 {
@@ -7,6 +8,7 @@ namespace PortfolioProject.Models
     {
         // Uniquely identifies a section
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SectionId { get; set; }
 
         // The coding language that a section
