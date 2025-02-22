@@ -5,7 +5,7 @@
 namespace PortfolioProject.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class TrackingSectionsAndBookmarks : Migration
+    public partial class AddSectionsBookmarks : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,7 +29,9 @@ namespace PortfolioProject.Data.Migrations
                 name: "Sections",
                 columns: table => new
                 {
-                    SectionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SectionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SectionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SectionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SectionDisplay = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
