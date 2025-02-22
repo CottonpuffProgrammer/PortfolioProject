@@ -49,3 +49,24 @@ functionality was completed.
 
 --------------------------------------------------
 
+## Week 4 (3rd Sprint):
+
+### 1/29/2025 - 3 hours:
+
+- Fixed multiple issues that were unseen in the 
+previous week such as section display only working 
+if a user was logged in and SectionId being a 
+string instead of an integer.
+
+### 1/31/2025 - 3 hours:
+
+Added the following pages:
+
+- HTML Introduction (Page Content only)
+- HTML Elements
+- HTML Attributes
+- HTML Styles
+- HTML Comments
+- HTML Links
+- HTML Lists
+- HTML Div
