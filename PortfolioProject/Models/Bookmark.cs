@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PortfolioProject.Models
 {
@@ -7,6 +8,7 @@ namespace PortfolioProject.Models
     {
         // Uniquely identifies each bookmark in the database
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BookmarkId { get; set; }
 
         // The user associated with the bookmark

@@ -246,7 +246,7 @@ namespace PortfolioProject.Data.Migrations
 
                     b.HasKey("BookmarkId");
 
-                    b.ToTable("Bookmarks");
+                    b.ToTable("Bookmarks", (string)null);
                 });
 
             modelBuilder.Entity("PortfolioProject.Models.Section", b =>
@@ -271,7 +271,7 @@ namespace PortfolioProject.Data.Migrations
 
                     b.HasKey("SectionId");
 
-                    b.ToTable("Sections");
+                    b.ToTable("Sections", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
