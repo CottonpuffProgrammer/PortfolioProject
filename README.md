@@ -1,3 +1,11 @@
+# Website Overview
+
+## The Goal:
+
+The goal of my project is to create a website where people can create an account and bookmark possibly helpful coding resources. For now, this can be chalked up to basic explanations of certains concepts of a couple of coding languages, but I do hope to add some examples and images or other media to help people understand the concepts more. I am working on this alone so it might not be nearly as helpful as other established coding websites, but the goal is to make a wbesite similar to those.
+
+--------------------------------------------------
+
 # Website Progress
 
 --------------------------------------------------
