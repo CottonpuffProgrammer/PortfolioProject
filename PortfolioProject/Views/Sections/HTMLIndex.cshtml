@@ -6,8 +6,7 @@
 
 <div class="container">
     <header class="header">
-        <h1>HTML</h1>
-        <p>Welcome to the HTML Introduction!</p>
+        <h1>HTML Introduction</h1>
     </header>
 </div>
 
@@ -15,7 +14,6 @@
     <!-- The left sidebar -->
     <div class="sidebar left">
         <h2>HTML Sections</h2>
-        <p>This text should become a vertical list of all HTML sections as they are added!</p>
         <ul>
             @{
                 // If there are no sections
@@ -32,7 +30,7 @@
                     {
                         // Creates a clickable that takes you to the specified section
                         <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
                         </li>
                     }
                 }
@@ -42,14 +40,23 @@
 
     <!-- Section for most webpage content -->
     <div class="content">
-        <h2>Welcome!</h2>
-        <p>This should contain a blurb of what HTML is and that you can do with it on a very general basis.</p>
+        <h2>What is HTML?</h2>
+        <p>HTML, or HyperText Markup Language, is the standard language used to create and organize content on the web. 
+            It provides the basic structure for all web pages, allowing browsers to display text, images, links, and other elements in a readable format.</p>
+        <p>HTML works by using tags (also called elements) to define different types of content. 
+            These tags tell the browser how to display and organize the information on the page. 
+            For example, "h1" is used for main headings, "p" for paragraphs, and "a" for hyperlinks.</p>
+
+        <p>A simple HTML document might look like this:</p>
+        <p> (Add Examples later!)</p>
+
+        <p>In short, HTML is important because it is the language that web browsers understand to display the content of a webpage. 
+            It forms the backbone of every website, ensuring that content is accessible, organized, and interactive for users.</p>
     </div>
 
     <!-- The right sidebar -->
     <div class="sidebar right">
         <h2>Bookmarks Sidebar</h2>
-        <p>This sidebar will display all bookmarks of the current logged in user!</p>
         <ul>
             @{
                 // If there are no bookmarks
@@ -66,7 +73,7 @@
                     {
                         // Creates a clickable that takes you to the specified bookmark
                         <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
                         </li>
                     }
                 }
