@@ -7,7 +7,7 @@ namespace PortfolioProject.Models
     {
         // Uniquely identifies a section
         [Key]
-        public string SectionId { get; set; }
+        public int SectionId { get; set; }
 
         // The coding language that a section
         // is from, helps the View Model send correct data

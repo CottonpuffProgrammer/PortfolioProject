@@ -12,8 +12,8 @@ using PortfolioProject.Data;
 namespace PortfolioProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250221120433_SectionTypeAdded")]
-    partial class SectionTypeAdded
+    [Migration("20250222065440_AddSectionsBookmarks")]
+    partial class AddSectionsBookmarks
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -254,8 +254,11 @@ namespace PortfolioProject.Data.Migrations
 
             modelBuilder.Entity("PortfolioProject.Models.Section", b =>
                 {
-                    b.Property<string>("SectionId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("SectionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SectionId"));
 
                     b.Property<string>("SectionDisplay")
                         .IsRequired()

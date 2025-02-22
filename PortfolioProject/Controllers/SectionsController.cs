@@ -5,6 +5,7 @@ using PortfolioProject.Data;
 using PortfolioProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PortfolioProject.Controllers;
 
 namespace PortfolioProject.Controllers
 {
@@ -19,15 +20,18 @@ namespace PortfolioProject.Controllers
             _context = context;
             _userManager = userManager;
         }
+
         public async Task<IActionResult> HTMLIndex(SectionsBookmarksViewModel viewModel)
         {
             viewModel = await CreateViewModel("HTML");
             return View(viewModel);
         }
+
         public IActionResult CSSIndex()
         {
             return View();
         }
+
         public IActionResult JavascriptIndex()
         {
             return View();
@@ -44,33 +48,48 @@ namespace PortfolioProject.Controllers
 
             // Gets current user and their userId
             IdentityUser user = await _userManager.GetUserAsync(User);
+
+            // The following code handles sections sorting
+
+            // Gets all Sections from the database
+            // and puts them in lists for sorting
+            List<Section> sections = _context.Sections.ToList();
+
+            // Creates a temporary list to keep track of what
+            // Sections should be displayed in the webpage
+            List<Section> sectionList = new List<Section>();
+
+            // Checks what sections are needed for display 
+            // based on the sectionType
+            foreach (Section s in sections)
+            {
+                if (sectionType == s.SectionType)
+                {
+                    // Adds the section to the list that will be
+                    // sent to the webpage for display
+                    sectionList.Add(s);
+                }
+            }
+
+            // Sends the Section list to the view model
+            viewModel.Sections = sectionList;
+
+            // The following code handles bookmark sorting
+
+            // If there is a logged in user
             if (user != null)
             {
+                // Gets the current user's userId
                 string userId = user.Id;
 
-                // Gets all Sections and Bookmarks from the database
+                // Gets all Bookmarks from the database
                 // and puts them in lists for sorting
-                List<Section> sections = _context.Sections.ToList();
                 List<Bookmark> bookmarks = _context.Bookmarks.ToList();
 
                 // Creates a temporary list to keep track of what
-                // should be displayed in the webpage
-                List<Section> sectionList = new List<Section>();
+                // Bookmarks should be displayed in the webpage
                 List<Bookmark> bookmarkList = new List<Bookmark>();
 
-                // The following code is for section and bookmark processing, both are extremely similar
-
-                // Checks what sections are needed for display 
-                // based on the sectionType
-                foreach (Section s in sections)
-                {
-                    if (sectionType == s.SectionType)
-                    {
-                        // Adds the section to the list that will be
-                        // sent to the webpage for display
-                        sectionList.Add(s);
-                    }
-                }
 
                 // Checks the userId of the currently logged in 
                 // user, and compares it to the userId of each 
@@ -85,18 +104,42 @@ namespace PortfolioProject.Controllers
                     }
                 }
 
-                // Sends both lists to the view model
-                viewModel.Sections = sectionList;
+                // Sends the Bookmark list to the view model
                 viewModel.Bookmarks = bookmarkList;
+            }
 
-                // Sends the view model to the webpage
-                return viewModel;
-            }
-            else
+            // Sends the view model to the webpage
+            return viewModel;
+        }
+
+        public async Task<IActionResult> AddTestData()
+        {
+            // Clears all currently added Sections
+            foreach (Section s in _context.Sections)
             {
-                // Generic error, this should never happen
-                return null;
+                _context.Remove(s);
             }
+
+            // The following code adds all Sections to the database for the
+            // sake of testing, if this website was deployed to say Azure
+            // this would not be needed but due to using a local database
+            // this is required to test Section functionality
+
+            // Creates a Section to be added, "a" is used instead of "s" 
+            // due to the above foreach function
+            Section a = new Section();
+
+            // Adds HTML Introduction section
+            a.SectionType = "HTML";
+            a.SectionName = "HTMLIndex";
+            a.SectionDisplay = "HTML Introduction";
+            _context.Add(a);
+
+            // Saves changes to database, must happen last
+            await _context.SaveChangesAsync();
+
+            // Sends you to a page confirming you added test data
+            return View();
         }
     }
 }

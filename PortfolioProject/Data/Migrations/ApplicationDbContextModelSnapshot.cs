@@ -251,8 +251,11 @@ namespace PortfolioProject.Data.Migrations
 
             modelBuilder.Entity("PortfolioProject.Models.Section", b =>
                 {
-                    b.Property<string>("SectionId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("SectionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SectionId"));
 
                     b.Property<string>("SectionDisplay")
                         .IsRequired()
