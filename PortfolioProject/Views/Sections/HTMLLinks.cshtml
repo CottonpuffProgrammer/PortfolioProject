@@ -1,12 +1,12 @@
 ﻿@model PortfolioProject.Models.SectionsBookmarksViewModel
 
 @{
-    ViewData["Title"] = "HTML Comments";
+    ViewData["Title"] = "HTML Links";
 }
 
 <div class="container">
     <header class="header">
-        <h1>HTML Comments</h1>
+        <h1>HTML Links</h1>
     </header>
 </div>
 
@@ -40,33 +40,32 @@
 
     <!-- Section for most webpage content -->
     <div class="content">
-        <h2>What are HTML Comments?</h2>
+        <h2>What are HTML Links?</h2>
         <p>
-            HTML comments are used to add notes or explanations within your HTML code. 
-            They are not displayed on the webpage itself, but they can help developers understand the code, leave reminders, 
-            or temporarily disable sections of the code during development.
+            HTML links (also called hyperlinks) are used to connect one webpage to another, or to link to external resources like images, files, or other websites. 
+            They are created using the "a" (anchor) tag, which allows users to click and navigate to a different page or location.
         </p>
-        <p>Purposes of HTML Comments:</p>
+        <p>Types of Links in HTML:</p>
         <ul>
-            Documentation:
-            <li>HTML comments allow developers to add explanations or instructions within the code. 
-                This is useful for clarifying complex sections of the code or leaving notes for other developers working on the same project.</li>
+            Links to Other Web Pages:
+            <li>
+                You can link to other pages on the same website or to external websites.
+            </li>
 
-            Temporarily Disable Code:
-            <li>You can use comments to temporarily disable part of the HTML code without deleting it. 
-                This is helpful when testing or troubleshooting.</li>
+            Link to Specific Sections of a Page:
+            <li>
+                Links can also be used to navigate to specific sections of the same webpage, which is called an anchor link. 
+                This is done using the id attribute on the target section and linking to it.
+            </li>
 
-            Organizing Code:
-            <li>Comments can help break the code into sections, making it easier to read and navigate. This is especially useful in larger projects with lots of code.</li>
-
-            Notes for Future Development:
-            <li>You can add reminders or TODOs in your comments for future work or improvements.</li>
+            Links to Files:
+            <li>You can also create links to downloadable files like PDFs, images, or videos.</li>
         </ul>
 
         <p>
-            As stated above, HTML comments are used to leave notes or explanations in the code that won't be displayed on the webpage. 
-            They are helpful for documentation, organizing code, temporarily disabling elements, and leaving reminders. 
-            While they are invisible to users, they make it easier for developers to collaborate and maintain the code.
+            Summarily, HTML links are created using the "a" tag, and they allow users to navigate to other pages, sections within the same page, or external resources. 
+            Links can be customized with various attributes like "href", "target, "title, and "rel to control their behavior. 
+            Links are a fundamental part of the web, providing navigation between different resources, whether it's within the same website or to external websites and files.
         </p>
     </div>
 
