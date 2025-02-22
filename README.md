@@ -25,8 +25,6 @@ basic introduction pages for each section.
 - Added a SectionsController and some navigation 
 buttons to move between sections.
 
---------------------------------------------------
-
 ## Week 3 (2nd Sprint):
 
 ### 1/25/2025 - 2 hours:
@@ -52,8 +50,6 @@ objects depending on the displayed webpage.
 functionality was completed.
 
 - Added Test Button to add test data to the website.
-
---------------------------------------------------
 
 ## Week 4 (3rd Sprint):
 
