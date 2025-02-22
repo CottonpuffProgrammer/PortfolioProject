@@ -1,0 +1,97 @@
+﻿@model PortfolioProject.Models.SectionsBookmarksViewModel
+
+@{
+    ViewData["Title"] = "HTML Lists";
+}
+
+<div class="container">
+    <header class="header">
+        <h1>HTML Lists</h1>
+    </header>
+</div>
+
+<div class="container">
+    <!-- The left sidebar -->
+    <div class="sidebar left">
+        <h2>HTML Sections</h2>
+        <ul>
+            @{
+                // If there are no sections
+                if (@Model?.Sections == null)
+                {
+                    <li>
+                        No sections to display!
+                    </li>
+                }
+                else
+                {
+                    // For every section that needs to be displayed
+                    foreach (Section s in @Model?.Sections)
+                    {
+                        // Creates a clickable that takes you to the specified section
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+
+    <!-- Section for most webpage content -->
+    <div class="content">
+        <h2>What are HTML Lists?</h2>
+        <p>
+            HTML lists are used to group and organize content in an ordered or unordered format. 
+            Lists help structure information in a way that's easy to read and follow. 
+            HTML supports three main types of lists: ordered lists, unordered lists, and definition lists.
+        </p>
+        <p>Types of Lists in HTML:</p>
+        <ul>
+            Unordered List:
+            <li>
+                These are defined by bullet points and are created using the "ul" tag (this sentence is contained in an unordered list!).
+            </li>
+
+            Ordered List:
+            <li>
+                A list that uses numbers instead of dots, a good example would be steps to a recipe in a cookbook.
+            </li>
+
+            Nested Lists:
+            <li>You can also nest lists inside other lists. This can be useful when you need to represent a hierarchy of items.</li>
+            (Add Examples later!)
+        </ul>
+
+        <p>
+            Lists are a great way to display items in order on a website, and can even be customized with HTML Styles and CSS!
+        </p>
+    </div>
+
+    <!-- The right sidebar -->
+    <div class="sidebar right">
+        <h2>Bookmarks Sidebar</h2>
+        <ul>
+            @{
+                // If there are no bookmarks
+                if (@Model?.Bookmarks == null)
+                {
+                    <li>
+                        No bookmarks to display!
+                    </li>
+                }
+                else
+                {
+                    // For every bookmark that needs to be displayed
+                    foreach (Bookmark b in @Model?.Bookmarks)
+                    {
+                        // Creates a clickable that takes you to the specified bookmark
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>
