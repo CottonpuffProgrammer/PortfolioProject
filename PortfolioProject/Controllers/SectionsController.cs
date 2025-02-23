@@ -144,6 +144,30 @@ namespace PortfolioProject.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> JavascriptVariables(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("Javascript");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> JavascriptLet(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("Javascript");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> JavascriptOperators(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("Javascript");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> JavascriptFunctions(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("Javascript");
+            return View(viewModel);
+        }
+
         // "type" refers to the coding language, such as "HTML", "CSS", or "Javascript"
         public async Task<SectionsBookmarksViewModel> CreateViewModel(string type)
         {
@@ -433,6 +457,46 @@ namespace PortfolioProject.Controllers
             a.SectionType = "Javascript";
             a.SectionName = "JavascriptSyntax";
             a.SectionDisplay = "Javascript Syntax";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds Javascript Variables section
+            a.SectionType = "Javascript";
+            a.SectionName = "JavascriptVariables";
+            a.SectionDisplay = "Javascript Variables";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds Javascript Let section
+            a.SectionType = "Javascript";
+            a.SectionName = "JavascriptLet";
+            a.SectionDisplay = "Javascript Let";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds Javascript Operators section
+            a.SectionType = "Javascript";
+            a.SectionName = "JavascriptOperators";
+            a.SectionDisplay = "Javascript Operators";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds Javascript Functions section
+            a.SectionType = "Javascript";
+            a.SectionName = "JavascriptFunctions";
+            a.SectionDisplay = "Javascript Functions";
             _context.Add(a);
             _context.SaveChanges();
 
