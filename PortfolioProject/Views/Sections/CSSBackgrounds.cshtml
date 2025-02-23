@@ -1,0 +1,107 @@
+﻿@model PortfolioProject.Models.SectionsBookmarksViewModel
+
+@{
+    ViewData["Title"] = "CSS Backgrounds";
+}
+
+<div class="container">
+    <header class="header">
+        <h1>CSS Backgrounds</h1>
+    </header>
+</div>
+
+<div class="container">
+    <!-- The left sidebar -->
+    <div class="sidebar left">
+        <h2>CSS Sections</h2>
+        <ul>
+            @{
+                // If there are no sections
+                if (@Model?.Sections == null)
+                {
+                    <li>
+                        No sections to display!
+                    </li>
+                }
+                else
+                {
+                    // For every section that needs to be displayed
+                    foreach (Section s in @Model?.Sections)
+                    {
+                        // Creates a clickable that takes you to the specified section
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+
+    <!-- Section for most webpage content -->
+    <div class="content">
+        <h2>What are CSS Backgrounds?</h2>
+
+        <p>
+            In CSS, backgrounds are used to enhance the appearance of elements by adding color, images, gradients, or other visual effects behind the content.
+            You can apply backgrounds to any HTML element, such as div, body, or even individual text elements, to create a more dynamic and visually appealing design.
+        </p>
+
+        <p>Properties for CSS Backgrounds:</p>
+        <ul>
+            background-color:
+            <li>
+                Sets the background color of an element.
+            </li>
+            background-image:
+            <li>
+                Sets an image as the background for an element. You can use the URL of the image as the value.
+            </li>
+            background-repeat:
+            <li>
+                Defines whether the background image should repeat (tile) or not.
+            </li>
+            background-position:
+            <li>
+                Specifies the position of the background image within the element. You can set it using keywords (like top, center, bottom) or using specific values (e.g., 10px 20px).
+            </li>
+            background-attachment:
+            <li>
+                Controls whether the background image scrolls with the page or stays fixed.
+            </li>
+        </ul>
+
+        <p>
+            CSS backgrounds allow you to add rich visual elements to your web design.
+            You can use colors, images, gradients, and control how they are displayed within elements using various properties.
+            With the ability to customize the size, position, repeat behavior, and scrolling behavior of backgrounds, you can create engaging and dynamic web layouts.
+        </p>
+    </div>
+
+    <!-- The right sidebar -->
+    <div class="sidebar right">
+        <h2>Bookmarks Sidebar</h2>
+        <ul>
+            @{
+                // If there are no bookmarks
+                if (@Model?.Bookmarks == null)
+                {
+                    <li>
+                        No bookmarks to display!
+                    </li>
+                }
+                else
+                {
+                    // For every bookmark that needs to be displayed
+                    foreach (Bookmark b in @Model?.Bookmarks)
+                    {
+                        // Creates a clickable that takes you to the specified bookmark
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>
