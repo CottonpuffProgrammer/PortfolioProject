@@ -2,9 +2,13 @@
 
 --------------------------------------------------
 
-## The Goal:
+## The End Goal:
 
 The goal of my project is to create a website where people can create an account and bookmark possibly helpful coding resources. For now, this can be chalked up to basic explanations of certains concepts of a couple of coding languages, but I do hope to add some examples and images or other media to help people understand the concepts more. I am working on this alone so it might not be nearly as helpful as other established coding websites, but the goal is to make a website similar to those.
+
+## The Current Goal:
+
+Add bookmark functionality to all pages that will display any bookmarks a user has on their account, and allow users to add and delete bookmarks.
 
 --------------------------------------------------
 
