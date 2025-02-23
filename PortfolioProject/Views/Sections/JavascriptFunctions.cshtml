@@ -1,0 +1,94 @@
+﻿@model PortfolioProject.Models.SectionsBookmarksViewModel
+
+@{
+    ViewData["Title"] = "Javascript Functions";
+}
+
+<div class="container">
+    <header class="header">
+        <h1>Javascript Functions</h1>
+    </header>
+</div>
+
+<div class="container">
+    <!-- The left sidebar -->
+    <div class="sidebar left">
+        <h2>Javascript Sections</h2>
+        <ul>
+            @{
+                // If there are no sections
+                if (@Model?.Sections == null)
+                {
+                    <li>
+                        No sections to display!
+                    </li>
+                }
+                else
+                {
+                    // For every section that needs to be displayed
+                    foreach (Section s in @Model?.Sections)
+                    {
+                        // Creates a clickable that takes you to the specified section
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+
+    <!-- Section for most webpage content -->
+    <div class="content">
+        <h2>What are Javascript Functions?</h2>
+
+        <p>
+            In JavaScript, a function is a block of code that performs a specific task and can be executed when it is called.
+            Functions help in making your code modular, reusable, and more organized.
+            They allow you to write code once and call it multiple times, potentially with different inputs (called parameters), which makes your program more flexible.
+        </p>
+
+        <p>Function in Javascript have 3 main components:</p>
+
+        <ol>
+            <li>
+                Function Declaration: This defines the function and its name.
+            </li>
+            <li>
+                Parameters: These are the placeholders for the values that you pass to the function when calling it (inputs).
+            </li>
+            <li>
+                Return Statement: Functions can return a value to the calling code. This is optional — not all functions return values.
+            </li>
+        </ol>
+
+        <p>There is plenty more to learn about functions, but would be helped with examples (coming soon)!</p>
+    </div>
+
+    <!-- The right sidebar -->
+    <div class="sidebar right">
+        <h2>Bookmarks Sidebar</h2>
+        <ul>
+            @{
+                // If there are no bookmarks
+                if (@Model?.Bookmarks == null)
+                {
+                    <li>
+                        No bookmarks to display!
+                    </li>
+                }
+                else
+                {
+                    // For every bookmark that needs to be displayed
+                    foreach (Bookmark b in @Model?.Bookmarks)
+                    {
+                        // Creates a clickable that takes you to the specified bookmark
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>
