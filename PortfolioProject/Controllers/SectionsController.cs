@@ -77,6 +77,24 @@ namespace PortfolioProject.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> CSSSyntax(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("CSS");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> CSSSelectors(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("CSS");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> CSSComments(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("CSS");
+            return View(viewModel);
+        }
+
         // All Javascript related webpages can be found below
         public IActionResult JavascriptIndex()
         {
@@ -228,7 +246,7 @@ namespace PortfolioProject.Controllers
             // Clears the section to prevent an error
             a = new Section();
 
-            // Adds HTML Comments section
+            // Adds HTML Links section
             a.SectionType = "HTML";
             a.SectionName = "HTMLLinks";
             a.SectionDisplay = "HTML Links";
@@ -262,6 +280,36 @@ namespace PortfolioProject.Controllers
             a.SectionType = "CSS";
             a.SectionName = "CSSIndex";
             a.SectionDisplay = "CSS Introduction";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds CSS Syntax section
+            a.SectionType = "CSS";
+            a.SectionName = "CSSSyntax";
+            a.SectionDisplay = "CSS Syntax";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds CSS Selectors section
+            a.SectionType = "CSS";
+            a.SectionName = "CSSSelectors";
+            a.SectionDisplay = "CSS Selectors";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds CSS Comments section
+            a.SectionType = "CSS";
+            a.SectionName = "CSSComments";
+            a.SectionDisplay = "CSS Comments";
             _context.Add(a);
             _context.SaveChanges();
 
