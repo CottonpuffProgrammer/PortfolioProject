@@ -1,0 +1,97 @@
+﻿@model PortfolioProject.Models.SectionsBookmarksViewModel
+
+@{
+    ViewData["Title"] = "Javascript Placement";
+}
+
+<div class="container">
+    <header class="header">
+        <h1>Javascript Placement</h1>
+    </header>
+</div>
+
+<div class="container">
+    <!-- The left sidebar -->
+    <div class="sidebar left">
+        <h2>Javascript Sections</h2>
+        <ul>
+            @{
+                // If there are no sections
+                if (@Model?.Sections == null)
+                {
+                    <li>
+                        No sections to display!
+                    </li>
+                }
+                else
+                {
+                    // For every section that needs to be displayed
+                    foreach (Section s in @Model?.Sections)
+                    {
+                        // Creates a clickable that takes you to the specified section
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+
+    <!-- Section for most webpage content -->
+    <div class="content">
+        <h2>Where do you put Javascript?</h2>
+
+        <p>In web development, JavaScript can be placed in several locations within an HTML document, 
+            depending on how and when you want the JavaScript code to be executed. 
+            The placement of JavaScript affects both the page's loading performance and how smoothly the user experience is.</p>
+
+            <p>Usually, you will want to place Javascript in the following places:</p>
+
+            <ul>
+                <li>
+                JavaScript can be placed inside the head section of your HTML document. This means the script will load before the HTML content is fully rendered.
+                (This is useful for scripts that must load early, such as those required for functionality that needs to be available as soon as the page starts rendering, like analytics or page-specific settings.)
+                </li>
+                <li>
+                Placing JavaScript just before the closing body tag is considered best practice for most cases. This ensures that the HTML content is fully loaded and rendered before the script runs.
+                (It's ideal for general JavaScript code that interacts with elements on the page, as it ensures that the HTML elements the script interacts with are already available.)
+                </li>
+                <li>
+                If you place a script in the head section but don't want it to block page rendering, you can use the async attribute. This tells the browser to download the script in the background while continuing to render the page.
+                (Good for when you have independent scripts that don’t rely on other scripts or the page structure, such as external libraries or analytics tracking.)
+                </li>
+            <li>
+                The defer attribute also prevents the script from blocking page rendering, but it ensures that the script is executed after the HTML is fully parsed.
+                (This is useful when you want to place the script in the head section but need it to execute after the page content has been parsed. It's commonly used for scripts that manipulate the DOM or need access to page elements.)
+            </li>
+            </ul>
+    </div>
+
+    <!-- The right sidebar -->
+    <div class="sidebar right">
+        <h2>Bookmarks Sidebar</h2>
+        <ul>
+            @{
+                // If there are no bookmarks
+                if (@Model?.Bookmarks == null)
+                {
+                    <li>
+                        No bookmarks to display!
+                    </li>
+                }
+                else
+                {
+                    // For every bookmark that needs to be displayed
+                    foreach (Bookmark b in @Model?.Bookmarks)
+                    {
+                        // Creates a clickable that takes you to the specified bookmark
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+﻿@model PortfolioProject.Models.SectionsBookmarksViewModel
+
+@{
+    ViewData["Title"] = "Javascript Statements";
+}
+
+<div class="container">
+    <header class="header">
+        <h1>Javascript Statements</h1>
+    </header>
+</div>
+
+<div class="container">
+    <!-- The left sidebar -->
+    <div class="sidebar left">
+        <h2>Javascript Sections</h2>
+        <ul>
+            @{
+                // If there are no sections
+                if (@Model?.Sections == null)
+                {
+                    <li>
+                        No sections to display!
+                    </li>
+                }
+                else
+                {
+                    // For every section that needs to be displayed
+                    foreach (Section s in @Model?.Sections)
+                    {
+                        // Creates a clickable that takes you to the specified section
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+
+    <!-- Section for most webpage content -->
+    <div class="content">
+        <h2>What are Javascript Statements?</h2>
+
+        <p>
+            In JavaScript, a statement is a single unit of code that performs an action.
+            It is the basic building block of JavaScript programs. A statement typically ends with a semicolon (;),
+            though it is optional in many cases due to JavaScript's automatic semicolon insertion (ASI).
+        </p>
+
+        <p>Types of Javascript Statements include:</p>
+
+        <ul>
+            <li>
+                Declaration Statements These are used to declare variables or functions. They define the resources that your program will use.
+            </li>
+            <li>
+                Expression Statements An expression is a combination of values, variables, operators, and functions that can be evaluated to produce a value.
+                An expression statement is an expression followed by a semicolon.
+            </li>
+            <li>
+                Control Flow Statements These statements control the flow of execution in your program by making decisions or repeating actions.
+            </li>
+            <li>
+                Exception Handling Statements These statements are used to handle errors or exceptional conditions in the program.
+            </li>
+        </ul>
+
+        <p>This is just some of, not all of, what Javascript statements can do!</p>
+    </div>
+
+    <!-- The right sidebar -->
+    <div class="sidebar right">
+        <h2>Bookmarks Sidebar</h2>
+        <ul>
+            @{
+                // If there are no bookmarks
+                if (@Model?.Bookmarks == null)
+                {
+                    <li>
+                        No bookmarks to display!
+                    </li>
+                }
+                else
+                {
+                    // For every bookmark that needs to be displayed
+                    foreach (Bookmark b in @Model?.Bookmarks)
+                    {
+                        // Creates a clickable that takes you to the specified bookmark
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>

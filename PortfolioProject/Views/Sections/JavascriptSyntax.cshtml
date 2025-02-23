@@ -1,0 +1,100 @@
+﻿@model PortfolioProject.Models.SectionsBookmarksViewModel
+
+@{
+    ViewData["Title"] = "Javascript Syntax";
+}
+
+<div class="container">
+    <header class="header">
+        <h1>Javascript Syntax</h1>
+    </header>
+</div>
+
+<div class="container">
+    <!-- The left sidebar -->
+    <div class="sidebar left">
+        <h2>Javascript Sections</h2>
+        <ul>
+            @{
+                // If there are no sections
+                if (@Model?.Sections == null)
+                {
+                    <li>
+                        No sections to display!
+                    </li>
+                }
+                else
+                {
+                    // For every section that needs to be displayed
+                    foreach (Section s in @Model?.Sections)
+                    {
+                        // Creates a clickable that takes you to the specified section
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+
+    <!-- Section for most webpage content -->
+    <div class="content">
+        <h2>What is Javascript Syntax?</h2>
+
+        <p>
+            JavaScript syntax refers to the rules that define a correctly structured JavaScript program.
+            It specifies how the code should be written so that the JavaScript engine can interpret and execute it.
+            In simple terms, JavaScript syntax is like the grammar of the language, defining how we write statements, variables, operators, functions, etc.
+        </p>
+
+        <p>There are many kinds of syntax for different operations in Javascript, such as:</p>
+
+        <ul>
+            <li>
+                Statements: A statement is a single line of code that performs an action. Most JavaScript statements end with a semicolon (;), but this is optional in some cases due to automatic semicolon insertion (ASI).
+            </li>
+            <li>
+                Case Sensitive: JavaScript is case-sensitive, which means Variable, variable, and VARIABLE are considered three different identifiers.
+            </li>
+            <li>
+                Variables: In JavaScript, variables are declared using let, const, or var. The most common modern approach is to use let and const.
+            </li>
+            <li>
+                Data Types: JavaScript has primitive types (like numbers, strings, and booleans) and objects (like arrays and functions).
+            </li>
+            <li>
+                Operators: JavaScript uses operators (such as +, -, *, /, %, ++, --) to perform operations on variables and values.
+            </li>
+        </ul>
+
+        <p>This is just scratching the surface of syntax in Javascript, there is plenty more to learn!</p>
+    </div>
+
+    <!-- The right sidebar -->
+    <div class="sidebar right">
+        <h2>Bookmarks Sidebar</h2>
+        <ul>
+            @{
+                // If there are no bookmarks
+                if (@Model?.Bookmarks == null)
+                {
+                    <li>
+                        No bookmarks to display!
+                    </li>
+                }
+                else
+                {
+                    // For every bookmark that needs to be displayed
+                    foreach (Bookmark b in @Model?.Bookmarks)
+                    {
+                        // Creates a clickable that takes you to the specified bookmark
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>
