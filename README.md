@@ -97,3 +97,20 @@ Added the following pages:
 - CSS Borders
 - CSS Margins
 - CSS Height
+
+--------------------------------------------------
+
+## Week 6 (5th Sprint):
+
+### 2/14/2025 - 4 hours:
+
+Added the following pages:
+
+- Javascript Introduction
+- Javascript Placement
+- Javascript Statements
+- Javascript Syntax
+- Javascript Variables
+- Javascript Let
+- Javascript Operators
+- Javascript Functions
