@@ -126,6 +126,24 @@ namespace PortfolioProject.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> JavascriptPlacement(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("Javascript");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> JavascriptStatements(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("Javascript");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> JavascriptSyntax(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("Javascript");
+            return View(viewModel);
+        }
+
         // "type" refers to the coding language, such as "HTML", "CSS", or "Javascript"
         public async Task<SectionsBookmarksViewModel> CreateViewModel(string type)
         {
@@ -375,6 +393,46 @@ namespace PortfolioProject.Controllers
             a.SectionType = "CSS";
             a.SectionName = "CSSHeightWidth";
             a.SectionDisplay = "CSS Height/Width";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds Javascript Introduction section
+            a.SectionType = "Javascript";
+            a.SectionName = "JavascriptIndex";
+            a.SectionDisplay = "Javascript Introduction";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds Javascript Placement section
+            a.SectionType = "Javascript";
+            a.SectionName = "JavascriptPlacement";
+            a.SectionDisplay = "Javascript Placement";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds Javascript Statements section
+            a.SectionType = "Javascript";
+            a.SectionName = "JavascriptStatements";
+            a.SectionDisplay = "Javascript Statements";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds Javascript Syntax section
+            a.SectionType = "Javascript";
+            a.SectionName = "JavascriptSyntax";
+            a.SectionDisplay = "Javascript Syntax";
             _context.Add(a);
             _context.SaveChanges();
 
