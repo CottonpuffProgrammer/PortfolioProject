@@ -80,3 +80,20 @@ Added the following pages:
 - HTML Links
 - HTML Lists
 - HTML Div
+
+--------------------------------------------------
+
+## Week 5 (4th Sprint):
+
+### 2/05/2025 - 4 hours:
+
+Added the following pages:
+
+- CSS Introduction
+- CSS Syntax
+- CSS Selectors
+- CSS Comments
+- CSS Backgrounds
+- CSS Borders
+- CSS Margins
+- CSS Height
