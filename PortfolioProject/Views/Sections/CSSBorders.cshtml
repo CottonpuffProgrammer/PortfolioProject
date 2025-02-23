@@ -1,0 +1,102 @@
+﻿@model PortfolioProject.Models.SectionsBookmarksViewModel
+
+@{
+    ViewData["Title"] = "CSS Borders";
+}
+
+<div class="container">
+    <header class="header">
+        <h1>CSS Borders</h1>
+    </header>
+</div>
+
+<div class="container">
+    <!-- The left sidebar -->
+    <div class="sidebar left">
+        <h2>CSS Sections</h2>
+        <ul>
+            @{
+                // If there are no sections
+                if (@Model?.Sections == null)
+                {
+                    <li>
+                        No sections to display!
+                    </li>
+                }
+                else
+                {
+                    // For every section that needs to be displayed
+                    foreach (Section s in @Model?.Sections)
+                    {
+                        // Creates a clickable that takes you to the specified section
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+
+    <!-- Section for most webpage content -->
+    <div class="content">
+        <h2>What are CSS Borders?</h2>
+
+        <p>
+            CSS borders are used to create a visible line around an element, helping to define its boundaries and enhance its visual appearance.
+            Borders can be applied to almost any HTML element, such as divs, paragraphs, and images, and they are customizable in terms of width, style, and color.
+        </p>
+
+        <p>Border Properties:</p>
+
+        <ul>
+            border-width:
+            <li>
+                Specifies the thickness of the border.
+            </li>
+            border-style:
+            <li>
+                Defines the style of the border. There are several possible values:
+
+                (Add Examples after creating more pages!)
+            </li>
+            border-color:
+            <li>
+                Sets the color of the border. You can use color names, hex codes, RGB values, HSL, or other color formats.
+            </li>
+            border:
+            <li>
+                The border property is a shorthand for combining border-width, border-style, and border-color into a single line.
+            </li>
+        </ul>
+
+        <p>You can also put a border on only specific sides of something using border-right, border-left, border-top, and border-bottom!</p>
+    </div>
+
+    <!-- The right sidebar -->
+    <div class="sidebar right">
+        <h2>Bookmarks Sidebar</h2>
+        <ul>
+            @{
+                // If there are no bookmarks
+                if (@Model?.Bookmarks == null)
+                {
+                    <li>
+                        No bookmarks to display!
+                    </li>
+                }
+                else
+                {
+                    // For every bookmark that needs to be displayed
+                    foreach (Bookmark b in @Model?.Bookmarks)
+                    {
+                        // Creates a clickable that takes you to the specified bookmark
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>

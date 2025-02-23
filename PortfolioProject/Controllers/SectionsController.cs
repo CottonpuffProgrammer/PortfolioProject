@@ -95,10 +95,35 @@ namespace PortfolioProject.Controllers
             return View(viewModel);
         }
 
-        // All Javascript related webpages can be found below
-        public IActionResult JavascriptIndex()
+        public async Task<IActionResult> CSSBackgrounds(SectionsBookmarksViewModel viewModel)
         {
-            return View();
+            viewModel = await CreateViewModel("CSS");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> CSSBorders(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("CSS");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> CSSMargins(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("CSS");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> CSSHeightWidth(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("CSS");
+            return View(viewModel);
+        }
+
+        // All Javascript related webpages can be found below
+        public async Task<IActionResult> JavascriptIndex(SectionsBookmarksViewModel viewModel)
+        {
+            viewModel = await CreateViewModel("Javascript");
+            return View(viewModel);
         }
 
         // "type" refers to the coding language, such as "HTML", "CSS", or "Javascript"
@@ -310,6 +335,46 @@ namespace PortfolioProject.Controllers
             a.SectionType = "CSS";
             a.SectionName = "CSSComments";
             a.SectionDisplay = "CSS Comments";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds CSS Backgrounds section
+            a.SectionType = "CSS";
+            a.SectionName = "CSSBackgrounds";
+            a.SectionDisplay = "CSS Backgrounds";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds CSS Borders section
+            a.SectionType = "CSS";
+            a.SectionName = "CSSBorders";
+            a.SectionDisplay = "CSS Borders";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds CSS Margins section
+            a.SectionType = "CSS";
+            a.SectionName = "CSSMargins";
+            a.SectionDisplay = "CSS Margins";
+            _context.Add(a);
+            _context.SaveChanges();
+
+            // Clears the section to prevent an error
+            a = new Section();
+
+            // Adds CSS HeightWidth section
+            a.SectionType = "CSS";
+            a.SectionName = "CSSHeightWidth";
+            a.SectionDisplay = "CSS Height/Width";
             _context.Add(a);
             _context.SaveChanges();
 
