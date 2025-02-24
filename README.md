@@ -8,7 +8,7 @@ The goal of my project is to create a website where people can create an account
 
 ## The Current Goal:
 
-Add bookmark functionality to all pages that will display any bookmarks a user has on their account, and allow users to add and delete bookmarks.
+Reduce redundancy of current website code by further utilizing objects and the database.
 
 --------------------------------------------------
 
