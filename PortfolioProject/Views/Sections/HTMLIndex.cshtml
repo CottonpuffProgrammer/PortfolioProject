@@ -30,7 +30,12 @@
                     {
                         // Creates a clickable that takes you to the specified section
                         <li>
-                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@s.SectionName">@s.SectionDisplay</a>
+                            <form method="post" asp-controller="Sections" asp-action="HTMLIndex">
+                                <input type="hidden" name="sectionName" value="@s.SectionName" />
+                                <button type="submit" class="nav-link">
+                                    @s.SectionDisplay
+                                </button>
+                            </form>
                         </li>
                     }
                 }
@@ -40,43 +45,14 @@
 
     <!-- Section for most webpage content -->
     <div class="content">
-        <h2>What is HTML?</h2>
-        <p>HTML, or HyperText Markup Language, is the standard language used to create and organize content on the web. 
-            It provides the basic structure for all web pages, allowing browsers to display text, images, links, and other elements in a readable format.</p>
-        <p>HTML works by using tags (also called elements) to define different types of content. 
-            These tags tell the browser how to display and organize the information on the page. 
-            For example, "h1" is used for main headings, "p" for paragraphs, and "a" for hyperlinks.</p>
-
-        <p> (Add Examples later!)</p>
-
-        <p>In short, HTML is important because it is the language that web browsers understand to display the content of a webpage. 
-            It forms the backbone of every website, ensuring that content is accessible, organized, and interactive for users.</p>
+        @Html.Raw(@Model.SectionToDisplay.SectionHTML) <!-- This should display everything located in the SectionHTML property of the chosen Section! -->
     </div>
 
     <!-- The right sidebar -->
     <div class="sidebar right">
         <h2>Bookmarks Sidebar</h2>
         <ul>
-            @{
-                // If there are no bookmarks
-                if (@Model?.Bookmarks == null)
-                {
-                    <li>
-                        No bookmarks to display!
-                    </li>
-                }
-                else
-                {
-                    // For every bookmark that needs to be displayed
-                    foreach (Bookmark b in @Model?.Bookmarks)
-                    {
-                        // Creates a clickable that takes you to the specified bookmark
-                        <li>
-                            <a class="nav-link" asp-area="" asp-controller="Sections" asp-action="@b.BookmarkName">@b.BookmarkDisplay</a>
-                        </li>
-                    }
-                }
-            }
+
         </ul>
     </div>
 </div>

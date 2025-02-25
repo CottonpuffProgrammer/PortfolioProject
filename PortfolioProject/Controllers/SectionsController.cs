@@ -21,161 +21,68 @@ namespace PortfolioProject.Controllers
             _userManager = userManager;
         }
 
-        // All HTML related webpages can be found below
+        [HttpGet]
         public async Task<IActionResult> HTMLIndex(SectionsBookmarksViewModel viewModel)
         {
-            viewModel = await CreateViewModel("HTML");
+            viewModel = await CreateViewModel("HTML", "HTML");
             return View(viewModel);
         }
 
-        public async Task<IActionResult> HTMLElements(SectionsBookmarksViewModel viewModel)
+        [HttpPost]
+        public async Task<IActionResult> HTMLIndex(SectionsBookmarksViewModel viewModel, string sectionName)
         {
-            viewModel = await CreateViewModel("HTML");
+            ViewBag.SectionName = sectionName;
+            viewModel = await CreateViewModel("HTML", sectionName);
             return View(viewModel);
         }
 
-        public async Task<IActionResult> HTMLAttributes(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("HTML");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> HTMLStyles(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("HTML");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> HTMLComments(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("HTML");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> HTMLLinks(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("HTML");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> HTMLLists(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("HTML");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> HTMLDivs(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("HTML");
-            return View(viewModel);
-        }
-
-        // All CSS related webpages can be found below
+        [HttpGet]
         public async Task<IActionResult> CSSIndex(SectionsBookmarksViewModel viewModel)
         {
-            viewModel = await CreateViewModel("CSS");
+            viewModel = await CreateViewModel("CSS", "CSS");
             return View(viewModel);
         }
 
-        public async Task<IActionResult> CSSSyntax(SectionsBookmarksViewModel viewModel)
+        [HttpPost]
+        public async Task<IActionResult> CSSIndex(SectionsBookmarksViewModel viewModel, string sectionName)
         {
-            viewModel = await CreateViewModel("CSS");
+            ViewBag.SectionName = sectionName;
+            viewModel = await CreateViewModel("CSS", sectionName);
             return View(viewModel);
         }
 
-        public async Task<IActionResult> CSSSelectors(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("CSS");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> CSSComments(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("CSS");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> CSSBackgrounds(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("CSS");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> CSSBorders(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("CSS");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> CSSMargins(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("CSS");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> CSSHeightWidth(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("CSS");
-            return View(viewModel);
-        }
-
-        // All Javascript related webpages can be found below
+        [HttpGet]
         public async Task<IActionResult> JavascriptIndex(SectionsBookmarksViewModel viewModel)
         {
-            viewModel = await CreateViewModel("Javascript");
+            viewModel = await CreateViewModel("Javascript", "Javascript");
             return View(viewModel);
         }
 
-        public async Task<IActionResult> JavascriptPlacement(SectionsBookmarksViewModel viewModel)
+        [HttpPost]
+        public async Task<IActionResult> JavascriptIndex(SectionsBookmarksViewModel viewModel, string sectionName)
         {
-            viewModel = await CreateViewModel("Javascript");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> JavascriptStatements(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("Javascript");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> JavascriptSyntax(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("Javascript");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> JavascriptVariables(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("Javascript");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> JavascriptLet(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("Javascript");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> JavascriptOperators(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("Javascript");
-            return View(viewModel);
-        }
-
-        public async Task<IActionResult> JavascriptFunctions(SectionsBookmarksViewModel viewModel)
-        {
-            viewModel = await CreateViewModel("Javascript");
+            ViewBag.SectionName = sectionName;
+            viewModel = await CreateViewModel("Javascript", sectionName);
             return View(viewModel);
         }
 
         // "type" refers to the coding language, such as "HTML", "CSS", or "Javascript"
-        public async Task<SectionsBookmarksViewModel> CreateViewModel(string type)
+        public async Task<SectionsBookmarksViewModel> CreateViewModel(string type, string sectionName)
         {
+
             // Makes a string from the parameter to be used in sorting
             string sectionType = type;
 
             // Makes a View Model to pass Sections and Bookmarks to a page for viewing
             SectionsBookmarksViewModel viewModel = new SectionsBookmarksViewModel();
+
+            // Grabs the required section from the database based on what section the 
+            // user clicked on the website
+            Section section = _context.Sections.FirstOrDefault(s => s.SectionName == sectionName);
+
+            // Make the inputted section the one to display
+            viewModel.SectionToDisplay = section;
+
 
             // Gets current user and their userId
             IdentityUser user = await _userManager.GetUserAsync(User);
@@ -241,267 +148,6 @@ namespace PortfolioProject.Controllers
 
             // Sends the view model to the webpage
             return viewModel;
-        }
-
-        // A temporary test method for adding data to test 
-        // section functionality, is meant to be long due to its purpose
-        public IActionResult AddTestData()
-        {
-            // Clears all currently added Sections
-            foreach (Section s in _context.Sections)
-            {
-                _context.Remove(s);
-                _context.SaveChanges();
-            }
-
-            // The following code adds all Sections to the database for the
-            // sake of testing, if this website was deployed to say Azure
-            // this would not be needed but due to using a local database
-            // this is required to test Section functionality
-
-            // Creates a Section to be added, "a" is used instead of "s" 
-            // due to the above foreach function
-            Section a = new Section();
-
-            // Adds HTML Introduction section
-            a.SectionType = "HTML";
-            a.SectionName = "HTMLIndex";
-            a.SectionDisplay = "HTML Introduction";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds HTML Elements section
-            a.SectionType = "HTML";
-            a.SectionName = "HTMLElements";
-            a.SectionDisplay = "HTML Elements";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds HTML Attributes section
-            a.SectionType = "HTML";
-            a.SectionName = "HTMLAttributes";
-            a.SectionDisplay = "HTML Attributes";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds HTML Styles section
-            a.SectionType = "HTML";
-            a.SectionName = "HTMLStyles";
-            a.SectionDisplay = "HTML Styles";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds HTML Comments section
-            a.SectionType = "HTML";
-            a.SectionName = "HTMLComments";
-            a.SectionDisplay = "HTML Comments";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds HTML Links section
-            a.SectionType = "HTML";
-            a.SectionName = "HTMLLinks";
-            a.SectionDisplay = "HTML Links";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds HTML Lists section
-            a.SectionType = "HTML";
-            a.SectionName = "HTMLLists";
-            a.SectionDisplay = "HTML Lists";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds HTML Divs section
-            a.SectionType = "HTML";
-            a.SectionName = "HTMLDivs";
-            a.SectionDisplay = "HTML Divs";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds CSS Introduction section
-            a.SectionType = "CSS";
-            a.SectionName = "CSSIndex";
-            a.SectionDisplay = "CSS Introduction";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds CSS Syntax section
-            a.SectionType = "CSS";
-            a.SectionName = "CSSSyntax";
-            a.SectionDisplay = "CSS Syntax";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds CSS Selectors section
-            a.SectionType = "CSS";
-            a.SectionName = "CSSSelectors";
-            a.SectionDisplay = "CSS Selectors";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds CSS Comments section
-            a.SectionType = "CSS";
-            a.SectionName = "CSSComments";
-            a.SectionDisplay = "CSS Comments";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds CSS Backgrounds section
-            a.SectionType = "CSS";
-            a.SectionName = "CSSBackgrounds";
-            a.SectionDisplay = "CSS Backgrounds";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds CSS Borders section
-            a.SectionType = "CSS";
-            a.SectionName = "CSSBorders";
-            a.SectionDisplay = "CSS Borders";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds CSS Margins section
-            a.SectionType = "CSS";
-            a.SectionName = "CSSMargins";
-            a.SectionDisplay = "CSS Margins";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds CSS HeightWidth section
-            a.SectionType = "CSS";
-            a.SectionName = "CSSHeightWidth";
-            a.SectionDisplay = "CSS Height/Width";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds Javascript Introduction section
-            a.SectionType = "Javascript";
-            a.SectionName = "JavascriptIndex";
-            a.SectionDisplay = "Javascript Introduction";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds Javascript Placement section
-            a.SectionType = "Javascript";
-            a.SectionName = "JavascriptPlacement";
-            a.SectionDisplay = "Javascript Placement";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds Javascript Statements section
-            a.SectionType = "Javascript";
-            a.SectionName = "JavascriptStatements";
-            a.SectionDisplay = "Javascript Statements";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds Javascript Syntax section
-            a.SectionType = "Javascript";
-            a.SectionName = "JavascriptSyntax";
-            a.SectionDisplay = "Javascript Syntax";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds Javascript Variables section
-            a.SectionType = "Javascript";
-            a.SectionName = "JavascriptVariables";
-            a.SectionDisplay = "Javascript Variables";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds Javascript Let section
-            a.SectionType = "Javascript";
-            a.SectionName = "JavascriptLet";
-            a.SectionDisplay = "Javascript Let";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds Javascript Operators section
-            a.SectionType = "Javascript";
-            a.SectionName = "JavascriptOperators";
-            a.SectionDisplay = "Javascript Operators";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Clears the section to prevent an error
-            a = new Section();
-
-            // Adds Javascript Functions section
-            a.SectionType = "Javascript";
-            a.SectionName = "JavascriptFunctions";
-            a.SectionDisplay = "Javascript Functions";
-            _context.Add(a);
-            _context.SaveChanges();
-
-            // Sends you to a page confirming you added test data
-            return View();
         }
     }
 }
