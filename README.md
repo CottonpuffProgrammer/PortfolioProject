@@ -118,3 +118,31 @@ Added the following pages:
 - Javascript Let
 - Javascript Operators
 - Javascript Functions
+
+--------------------------------------------------
+
+## Week 7 (6th Sprint):
+
+### 2/24/2025 - 6 hours:
+
+- Seeded data into local database rather than 
+redundantly adding it.
+
+- Removed the need for a billion ".cshtml" files, 
+greatly reducing code redundancy.
+
+- Added new property to Section object to store all 
+HTML code as a string.
+
+- Added new property to 
+SectionsAndBookmarksViewModel, which can track 
+exactly what page needs to be displayed based on 
+user input.
+
+- Added onto the CreateViewModel method in the 
+SectionsController, is now able to make a view 
+model that works without needing an extra ".cshtml" 
+file to display code.
+
+- Remove "AddTestData" method as it is no longer 
+needed thanks to seeding data.
