@@ -8,7 +8,7 @@ The goal of my project is to create a website where people can create an account
 
 ## The Current Goal:
 
-Reduce redundancy of current website code by further utilizing objects and the database.
+To be determined for next week!
 
 --------------------------------------------------
 
