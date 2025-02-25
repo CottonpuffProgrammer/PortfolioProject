@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PortfolioProject.Data;
 
@@ -11,9 +12,11 @@ using PortfolioProject.Data;
 namespace PortfolioProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250225061317_TypoFix3")]
+    partial class TypoFix3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -346,7 +349,7 @@ namespace PortfolioProject.Data.Migrations
                             SectionId = 9,
                             SectionDisplay = "CSS Introduction",
                             SectionHTML = "<h2>What is CSS?</h2>\r\n        <p>\r\n            CSS (Cascading Style Sheets) is a styling language used to define the look and feel of a website or web application. \r\n            It works alongside HTML (which structures the content) to create visually engaging layouts by specifying how HTML elements should appear on the screen.\r\n        </p>\r\n        <p>\r\n            With CSS, you can control various visual aspects, such as:\r\n        </p>\r\n\r\n        <ol>\r\n            <li>\r\n                Colors: Set the color of text, backgrounds, and other elements.\r\n            </li>\r\n            <li>\r\n                Fonts: Choose the type, size, and style of text.\r\n            </li>\r\n            <li>\r\n                Spacing: Control margins, padding, and the distance between elements.\r\n            </li>\r\n            <li>\r\n                Layout: Position elements in a grid, flexbox, or other layout models.\r\n            </li>\r\n            <li>\r\n                Borders: Customize the thickness, style, and color of borders.\r\n            </li>\r\n            <li>\r\n                Animations and Transitions: Add movement or changes in elements when users interact with them.\r\n            </li>\r\n        </ol>\r\n\r\n        <p> (Add Examples later!)</p>",
-                            SectionName = "CSS",
+                            SectionName = "CSSIndex",
                             SectionType = "CSS"
                         },
                         new
@@ -410,7 +413,7 @@ namespace PortfolioProject.Data.Migrations
                             SectionId = 17,
                             SectionDisplay = "Javascript Introduction",
                             SectionHTML = "<h2>What is Javascript?</h2>\r\n\r\n        <p>\r\n            JavaScript is a high-level, dynamic, interpreted programming language that is primarily used for creating interactive effects within web browsers.\r\n            It's one of the core technologies of web development, alongside HTML and CSS, and is commonly used to build websites that are dynamic, interactive,\r\n            and responsive to user actions.\r\n        </p>\r\n\r\n        <p>Key Features of Javascript:</p>\r\n\r\n        <ul>\r\n            <li>\r\n                Client-Side Scripting: JavaScript is most commonly used as a client-side scripting language.\r\n                This means it runs on the user's web browser rather than on a web server.\r\n                It enables the web page to interact with the user, update dynamically without needing to reload the page,\r\n                and respond to events like clicks, form submissions, or keyboard inputs.\r\n            </li>\r\n            <li>\r\n                Interactivity: JavaScript enables interaction between the user and the webpage, such as:\r\n\r\n                <ul>\r\n                    <li>\r\n                        Form validation: Checking if a form is filled out correctly before submission.\r\n                    </li>\r\n                    <li>\r\n                        Animations and effects: Making elements move, fade, or change over time.\r\n                    </li>\r\n                    <li>\r\n                        Handling user events: Responding to clicks, hover effects, and other actions.\r\n                    </li>\r\n                </ul>\r\n            </li>\r\n            <li>\r\n                Versatility: JavaScript is not limited to the browser.\r\n                With platforms like Node.js, JavaScript can also be run on a server, enabling the development of full-stack applications.\r\n            </li>\r\n            <li>\r\n                Event-Driven: JavaScript is an event-driven language, meaning that most actions in a web page,\r\n                like clicks, mouse movements, key presses, or even data loading, are treated as events that can trigger JavaScript functions (event handlers).\r\n            </li>\r\n            <li>\r\n                Dynamic Typing: JavaScript does not require you to declare the type of a variable explicitly.\r\n                It is dynamically typed, meaning the type of a variable is determined at runtime, and can change during the execution of the program.\r\n            </li>\r\n            <li>\r\n                Asynchronous: JavaScript can perform asynchronous operations, meaning it can execute code without waiting for other tasks to complete.\r\n                This is especially useful for tasks like fetching data from a server or waiting for user input without freezing the page.\r\n            </li>\r\n            <li>\r\n                Object-Oriented: JavaScript supports object-oriented programming (OOP) principles, such as creating objects, classes, and using inheritance.\r\n                However, it also supports functional programming and procedural programming styles.\r\n            </li>\r\n        </ul>",
-                            SectionName = "Javascript",
+                            SectionName = "JavascriptIndex",
                             SectionType = "Javascript"
                         },
                         new

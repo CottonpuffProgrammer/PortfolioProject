@@ -25,5 +25,11 @@ namespace PortfolioProject.Models
         // a webpage
         [Required]
         public string SectionDisplay { get; set; }
+
+        // Contains the (usually rather long) HTML
+        // that will be displayed in the main content
+        // section of a page
+        public string ?SectionHTML { get; set; }
+
     }
 }

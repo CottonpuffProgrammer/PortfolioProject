@@ -13,5 +13,9 @@
         // be sent to a view, these will be 
         // organized in the SectionsController
         public List<Bookmark>? Bookmarks { get; set; }
+
+        // Determines what section to display based on
+        // information sent in HttpPost
+        public Section SectionToDisplay { get; set; }
     }
 }
