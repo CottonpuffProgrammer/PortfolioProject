@@ -8,7 +8,7 @@ The goal of my project is to create a website where people can create an account
 
 ## The Current Goal:
 
-To be determined for next week!
+Implement the ability to allow users to add and delete bookmarks, use XML documentation comments for commenting code instead of standard comments.
 
 --------------------------------------------------
 
