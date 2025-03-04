@@ -146,3 +146,14 @@ file to display code.
 
 - Remove "AddTestData" method as it is no longer 
 needed thanks to seeding data.
+
+--------------------------------------------------
+
+## Week 8 (7th Sprint):
+
+### 3/3/2025 - 4 hours:
+
+- Added Bookmark display functionality.
+
+- Added the ability for users to add and delete 
+bookmarks, all on one clickable button.
