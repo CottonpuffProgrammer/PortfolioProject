@@ -50,9 +50,35 @@
 
     <!-- The right sidebar -->
     <div class="sidebar right">
-        <h2>Bookmarks Sidebar</h2>
+        <h2>Your Bookmarks:</h2>
         <ul>
-
+            <ul>
+                @{
+                    // If there are no bookmarks
+                    if (@Model?.Bookmarks == null)
+                    {
+                        <li>
+                            No bookmarks to display!
+                        </li>
+                    }
+                    else
+                    {
+                        // For every bookmark that needs to be displayed
+                        foreach (Bookmark b in @Model?.Bookmarks)
+                        {
+                            // Creates a clickable that takes you to the specified bookmark
+                            <li>
+                                <form method="post" asp-controller="Sections" asp-action="HTMLIndex">
+                                    <input type="hidden" name="sectionName" value="@b.BookmarkName" />
+                                    <button type="submit" class="nav-link">
+                                        @b.BookmarkDisplay
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                    }
+                }
+            </ul>
         </ul>
     </div>
 </div>
