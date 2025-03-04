@@ -66,6 +66,69 @@ namespace PortfolioProject.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddBookmark (Bookmark b, string bookmarkName)
+        {
+            // Find a section using bookmarkName and create a bookmark from it
+
+            // Retrieves the section that the bookmark will be made from by the section name passed in "bookmarkName"
+            Section section = await _context.Sections
+                        .Where(n => n.SectionName == bookmarkName)
+                        .FirstOrDefaultAsync();
+
+            // Gets current user and their userId
+            IdentityUser user = await _userManager.GetUserAsync(User);
+
+            // Gets the current user's userId
+            string userId = user.Id;
+
+            // Creates a new bookmark to be added
+            Bookmark bookmarkToAdd = new Bookmark();
+
+            // Assigns userId to bookmark's UserId property
+            bookmarkToAdd.UserId = userId;
+
+            // Assigns SectionType to BookmarkType property
+            bookmarkToAdd.BookmarkType = section.SectionType;
+
+            // Assigns SectionName to BookmarkName property
+            bookmarkToAdd.BookmarkName = section.SectionName;
+
+            // Assigns SectionDisplay to BookmarkDisplay property
+            bookmarkToAdd.BookmarkDisplay = section.SectionDisplay;
+
+            // Adds newly created bookmark to database
+            _context.Bookmarks.Add(bookmarkToAdd);
+            await _context.SaveChangesAsync();
+
+            // For now, returns user to a default page, will be changed soon
+            return RedirectToAction("HTMLIndex");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteBookmark(Bookmark b, string bookmarkName)
+        {
+            // Find a bookmark using bookmarkName and delete it
+
+            // Gets current user and their userId
+            IdentityUser user = await _userManager.GetUserAsync(User);
+
+            // Gets the current user's userId
+            string userId = user.Id;
+
+            // Retrieves the bookmark to be deleted by both the name and userId of the bookmark
+            Bookmark? bookmarkToDelete = await _context.Bookmarks
+                        .Where(n => n.BookmarkName == bookmarkName && n.UserId == userId)
+                        .FirstOrDefaultAsync();
+
+            // Remove the bookmark from the database
+            _context.Bookmarks.Remove(bookmarkToDelete);
+            await _context.SaveChangesAsync();
+
+            // For now, returns user to a default page, will be changed soon
+            return RedirectToAction("HTMLIndex");
+        }
+
         // "type" refers to the coding language, such as "HTML", "CSS", or "Javascript"
         public async Task<SectionsBookmarksViewModel> CreateViewModel(string type, string sectionName)
         {

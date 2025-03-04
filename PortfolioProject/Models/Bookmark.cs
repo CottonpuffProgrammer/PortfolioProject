@@ -15,6 +15,10 @@ namespace PortfolioProject.Models
         [Required]
         public string UserId { get; set; }
 
+        // The coding language that a bookmark is from
+        [Required]
+        public string BookmarkType { get; set; }
+
         // The internal name of the bookmark, will help provide
         // a working clickable link when displayed on a webpage
         [Required]

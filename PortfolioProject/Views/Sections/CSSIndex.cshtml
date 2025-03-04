@@ -50,23 +50,66 @@
 
     <!-- The right sidebar -->
     <div class="sidebar right">
+        <!-- If the current page is a bookmark, display delete button, if not, display add button. -->
+        @{
+            int numericCheck = 0;
+            if (@Model?.Bookmarks == null)
+            {
+                <p></p>
+            }
+            else
+            {
+                foreach (Bookmark b in @Model?.Bookmarks)
+                {
+                    // Increases numericCheck if the displayed page is also a bookmark
+                    if (b.BookmarkDisplay == Model.SectionToDisplay.SectionDisplay)
+                    {
+                        numericCheck = numericCheck + 1;
+                    }
+                }
+
+                // If numericCheck is not 0, a bookmark is currently being displayed
+                if (numericCheck != 0)
+                {
+                    // Display "Delete Bookmark" button for the currently displayed section
+                    <form method="post" asp-controller="Sections" asp-action="DeleteBookmark">
+                        <input type="hidden" name="bookmarkName" value="@Model.SectionToDisplay.SectionName" />
+                        <button type="submit" class="nav-link">
+                            Delete Bookmark
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    // Display "Add Bookmark" button for the currently displayed section
+                    <form method="post" asp-controller="Sections" asp-action="AddBookmark">
+                        <input type="hidden" name="bookmarkName" value="@Model.SectionToDisplay.SectionName" />
+                        <button type="submit" class="nav-link">
+                            Add Bookmark
+                        </button>
+                    </form>
+                }
+            }
+        }
+
         <h2>Your Bookmarks:</h2>
         <ul>
-            <ul>
-                @{
-                    // If there are no bookmarks
-                    if (@Model?.Bookmarks == null)
+            @{
+                // If there are no bookmarks
+                if (@Model?.Bookmarks == null)
+                {
+                    <li>
+                        No bookmarks to display!
+                    </li>
+                }
+                else
+                {
+                    // For every bookmark that needs to be displayed
+                    foreach (Bookmark b in @Model?.Bookmarks)
                     {
-                        <li>
-                            No bookmarks to display!
-                        </li>
-                    }
-                    else
-                    {
-                        // For every bookmark that needs to be displayed
-                        foreach (Bookmark b in @Model?.Bookmarks)
+                        // Creates a clickable that takes you to the specified bookmark (for HTML bookmarks)
+                        if (b.BookmarkType == "HTML")
                         {
-                            // Creates a clickable that takes you to the specified bookmark
                             <li>
                                 <form method="post" asp-controller="Sections" asp-action="HTMLIndex">
                                     <input type="hidden" name="sectionName" value="@b.BookmarkName" />
@@ -76,9 +119,33 @@
                                 </form>
                             </li>
                         }
+                        // Creates a clickable that takes you to the specified bookmark (for CSS bookmarks)
+                        else if (b.BookmarkType == "CSS")
+                        {
+                            <li>
+                                <form method="post" asp-controller="Sections" asp-action="CSSIndex">
+                                    <input type="hidden" name="sectionName" value="@b.BookmarkName" />
+                                    <button type="submit" class="nav-link">
+                                        @b.BookmarkDisplay
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        // Creates a clickable that takes you to the specified bookmark (for Javascript bookmarks)
+                        else if (b.BookmarkType == "Javascript")
+                        {
+                            <li>
+                                <form method="post" asp-controller="Sections" asp-action="JavascriptIndex">
+                                    <input type="hidden" name="sectionName" value="@b.BookmarkName" />
+                                    <button type="submit" class="nav-link">
+                                        @b.BookmarkDisplay
+                                    </button>
+                                </form>
+                            </li>
+                        }
                     }
                 }
-            </ul>
+            }
         </ul>
     </div>
 </div>
