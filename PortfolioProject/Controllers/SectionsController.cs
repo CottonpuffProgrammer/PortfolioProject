@@ -6,6 +6,7 @@ using PortfolioProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PortfolioProject.Controllers;
+using static System.Collections.Specialized.BitVector32;
 
 namespace PortfolioProject.Controllers
 {
@@ -21,13 +22,31 @@ namespace PortfolioProject.Controllers
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// When the page is first visited, generates a view model to send section and bookmark data to display.
+        /// </summary>
+        /// <param name="viewModel">The view model containing all data required to display the page correctly.</param>
+        /// <returns>Returns a webpage view with a view model attached.</returns>
         [HttpGet]
-        public async Task<IActionResult> HTMLIndex(SectionsBookmarksViewModel viewModel)
+        public async Task<IActionResult> HTMLIndex(string sectionName, SectionsBookmarksViewModel viewModel)
         {
-            viewModel = await CreateViewModel("HTML", "HTML");
+            if (sectionName != null)
+            {
+                viewModel = await CreateViewModel("HTML", sectionName);
+            }
+            else
+            {
+                viewModel = await CreateViewModel("HTML", "HTML");
+            }
             return View(viewModel);
         }
 
+        /// <summary>
+        /// When a section on the page is clicked, this will update view model data to properly display the selected section.
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <param name="sectionName"></param>
+        /// <returns>Returns a webpage view with a view model attached.</returns>
         [HttpPost]
         public async Task<IActionResult> HTMLIndex(SectionsBookmarksViewModel viewModel, string sectionName)
         {
@@ -36,13 +55,31 @@ namespace PortfolioProject.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// When the page is first visited, generates a view model to send section and bookmark data to display.
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns>Returns a webpage view with a view model attached.</returns>
         [HttpGet]
-        public async Task<IActionResult> CSSIndex(SectionsBookmarksViewModel viewModel)
+        public async Task<IActionResult> CSSIndex(string sectionName, SectionsBookmarksViewModel viewModel)
         {
-            viewModel = await CreateViewModel("CSS", "CSS");
+            if (sectionName != null)
+            {
+                viewModel = await CreateViewModel("CSS", sectionName);
+            }
+            else
+            {
+                viewModel = await CreateViewModel("CSS", "CSS");
+            }
             return View(viewModel);
         }
 
+        /// <summary>
+        /// When a section on the page is clicked, this will update view model data to properly display the selected section.
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <param name="sectionName"></param>
+        /// <returns>Returns a webpage view with a view model attached.</returns>
         [HttpPost]
         public async Task<IActionResult> CSSIndex(SectionsBookmarksViewModel viewModel, string sectionName)
         {
@@ -51,13 +88,31 @@ namespace PortfolioProject.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// When the page is first visited, generates a view model to send section and bookmark data to display.
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns>Returns a webpage view with a view model attached.</returns>
         [HttpGet]
-        public async Task<IActionResult> JavascriptIndex(SectionsBookmarksViewModel viewModel)
+        public async Task<IActionResult> JavascriptIndex(string sectionName, SectionsBookmarksViewModel viewModel)
         {
-            viewModel = await CreateViewModel("Javascript", "Javascript");
+            if (sectionName != null)
+            {
+                viewModel = await CreateViewModel("Javascript", sectionName);
+            }
+            else
+            {
+                viewModel = await CreateViewModel("Javascript", "Javascript");
+            }
             return View(viewModel);
         }
 
+        /// <summary>
+        /// When a section on the page is clicked, this will update view model data to properly display the selected section.
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <param name="sectionName"></param>
+        /// <returns>Returns a webpage view with a view model attached.</returns>
         [HttpPost]
         public async Task<IActionResult> JavascriptIndex(SectionsBookmarksViewModel viewModel, string sectionName)
         {
@@ -66,54 +121,69 @@ namespace PortfolioProject.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// This method helps generate a bookmark to be added to the currently logged in user's bookmarks.
+        /// </summary>
+        /// <param name="bookmarkName">Determines what sections will be used to create a bookmark.</param>
+        /// <returns>Returns the user to the URL they were at when adding a bookmark.</returns>
         [HttpPost]
-        public async Task<IActionResult> AddBookmark (Bookmark b, string bookmarkName)
+        public async Task<IActionResult> AddBookmark (string bookmarkName)
         {
-            // Find a section using bookmarkName and create a bookmark from it
-
             // Retrieves the section that the bookmark will be made from by the section name passed in "bookmarkName"
-            Section section = await _context.Sections
+            Models.Section section = await _context.Sections
                         .Where(n => n.SectionName == bookmarkName)
                         .FirstOrDefaultAsync();
 
-            // Gets current user and their userId
             IdentityUser user = await _userManager.GetUserAsync(User);
 
-            // Gets the current user's userId
             string userId = user.Id;
 
-            // Creates a new bookmark to be added
             Bookmark bookmarkToAdd = new Bookmark();
 
-            // Assigns userId to bookmark's UserId property
             bookmarkToAdd.UserId = userId;
 
-            // Assigns SectionType to BookmarkType property
             bookmarkToAdd.BookmarkType = section.SectionType;
 
-            // Assigns SectionName to BookmarkName property
             bookmarkToAdd.BookmarkName = section.SectionName;
 
-            // Assigns SectionDisplay to BookmarkDisplay property
             bookmarkToAdd.BookmarkDisplay = section.SectionDisplay;
 
-            // Adds newly created bookmark to database
             _context.Bookmarks.Add(bookmarkToAdd);
+
             await _context.SaveChangesAsync();
 
-            // For now, returns user to a default page, will be changed soon
-            return RedirectToAction("HTMLIndex");
+            string redirectIndex = "";
+
+            // Chooses the Index to be redirected to, a simple if statement will work
+            // as there are only 3 Index pages to choose from
+            if (bookmarkToAdd.BookmarkType == "HTML")
+            {
+                redirectIndex = "HTMLIndex";
+            }
+            else if (bookmarkToAdd.BookmarkType == "CSS")
+            {
+                redirectIndex = "CSSIndex";
+            }
+            else if (bookmarkToAdd.BookmarkType == "Javascript")
+            {
+                redirectIndex = "JavascriptIndex";
+            }
+
+            SectionsBookmarksViewModel viewModel = await CreateViewModel(bookmarkToAdd.BookmarkType, bookmarkToAdd.BookmarkName);
+
+            return RedirectToAction(redirectIndex, "Sections", new { viewModel, sectionName = bookmarkToAdd.BookmarkName });
         }
 
+        /// <summary>
+        /// This method helps identify a bookmark to be removed from the currently logged in user's bookmarks.
+        /// </summary>
+        /// <param name="bookmarkName">Determines what sections will be used to find a bookmark to be deleted.</param>
+        /// <returns>Returns the user to the URL they were at when deleting a bookmark.</returns>
         [HttpPost]
-        public async Task<IActionResult> DeleteBookmark(Bookmark b, string bookmarkName)
+        public async Task<IActionResult> DeleteBookmark(string bookmarkName)
         {
-            // Find a bookmark using bookmarkName and delete it
-
-            // Gets current user and their userId
             IdentityUser user = await _userManager.GetUserAsync(User);
 
-            // Gets the current user's userId
             string userId = user.Id;
 
             // Retrieves the bookmark to be deleted by both the name and userId of the bookmark
@@ -121,95 +191,88 @@ namespace PortfolioProject.Controllers
                         .Where(n => n.BookmarkName == bookmarkName && n.UserId == userId)
                         .FirstOrDefaultAsync();
 
-            // Remove the bookmark from the database
             _context.Bookmarks.Remove(bookmarkToDelete);
+
             await _context.SaveChangesAsync();
 
-            // For now, returns user to a default page, will be changed soon
-            return RedirectToAction("HTMLIndex");
+            string redirectIndex = "";
+
+            // Chooses the Index to be redirected to, a simple if statement will work
+            // as there are only 3 Index pages to choose from
+            if (bookmarkToDelete.BookmarkType == "HTML")
+            {
+                redirectIndex = "HTMLIndex";
+            }
+            else if (bookmarkToDelete.BookmarkType == "CSS")
+            {
+                redirectIndex = "CSSIndex";
+            }
+            else if (bookmarkToDelete.BookmarkType == "Javascript")
+            {
+                redirectIndex = "JavascriptIndex";
+            }
+
+            SectionsBookmarksViewModel viewModel = await CreateViewModel(bookmarkToDelete.BookmarkType, bookmarkToDelete.BookmarkName);
+
+            return RedirectToAction(redirectIndex, "Sections", new { viewModel, sectionName = bookmarkToDelete.BookmarkName });
         }
 
-        // "type" refers to the coding language, such as "HTML", "CSS", or "Javascript"
+        /// <summary>
+        /// Creates a view model containing all sections from a specific coding language, along with a specific section to be displayed 
+        /// in the main content section of a webpage.
+        /// </summary>
+        /// <param name="type">Determines what sections will be displayed based on their coding language (example would be HTML).</param>
+        /// <param name="sectionName">Determines what section will be displayed in the main content of the webpage based on a section's name.</param>
+        /// <returns>Returns a view model ready to be displayed on a webpage.</returns>
         public async Task<SectionsBookmarksViewModel> CreateViewModel(string type, string sectionName)
         {
 
-            // Makes a string from the parameter to be used in sorting
             string sectionType = type;
 
-            // Makes a View Model to pass Sections and Bookmarks to a page for viewing
             SectionsBookmarksViewModel viewModel = new SectionsBookmarksViewModel();
 
-            // Grabs the required section from the database based on what section the 
-            // user clicked on the website
-            Section section = _context.Sections.FirstOrDefault(s => s.SectionName == sectionName);
+            // Grabs the required section from the database based on what section the user clicked on the website
+            Models.Section section = _context.Sections.FirstOrDefault(s => s.SectionName == sectionName);
 
-            // Make the inputted section the one to display
             viewModel.SectionToDisplay = section;
 
-
-            // Gets current user and their userId
             IdentityUser user = await _userManager.GetUserAsync(User);
 
-            // The following code handles sections sorting
+            List<Models.Section> sections = _context.Sections.ToList();
 
-            // Gets all Sections from the database
-            // and puts them in lists for sorting
-            List<Section> sections = _context.Sections.ToList();
+            List<Models.Section> sectionList = new List<Models.Section>();
 
-            // Creates a temporary list to keep track of what
-            // Sections should be displayed in the webpage
-            List<Section> sectionList = new List<Section>();
-
-            // Checks what sections are needed for display 
-            // based on the sectionType
-            foreach (Section s in sections)
+            foreach (Models.Section s in sections)
             {
                 if (sectionType == s.SectionType)
                 {
-                    // Adds the section to the list that will be
-                    // sent to the webpage for display
                     sectionList.Add(s);
                 }
             }
 
-            // Sends the Section list to the view model
             viewModel.Sections = sectionList;
 
-            // The following code handles bookmark sorting
-
-            // If there is a logged in user
             if (user != null)
             {
-                // Gets the current user's userId
                 string userId = user.Id;
 
-                // Gets all Bookmarks from the database
-                // and puts them in lists for sorting
                 List<Bookmark> bookmarks = _context.Bookmarks.ToList();
 
-                // Creates a temporary list to keep track of what
-                // Bookmarks should be displayed in the webpage
                 List<Bookmark> bookmarkList = new List<Bookmark>();
 
 
-                // Checks the userId of the currently logged in 
-                // user, and compares it to the userId of each 
-                // bookmark to see what belongs to the user
+                // Checks the userId of the currently logged in user, and compares it to the userId of each bookmark to see what belongs to the user
                 foreach (Bookmark b in bookmarks)
                 {
                     if (userId == b.UserId)
                     {
-                        // Adds the bookmark to the list that will be
-                        // sent to the webpage for display
                         bookmarkList.Add(b);
                     }
                 }
 
-                // Sends the Bookmark list to the view model
                 viewModel.Bookmarks = bookmarkList;
             }
 
-            // Sends the view model to the webpage
             return viewModel;
         }
     }

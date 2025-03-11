@@ -3,29 +3,36 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PortfolioProject.Models
 {
-    // Represents a singular bookmark
+    /// <summary>
+    /// Represents a single bookmark
+    /// </summary>
     public class Bookmark
     {
-        // Uniquely identifies each bookmark in the database
+        /// <summary>
+        /// An auto generated ID for each bookmark to ensure there are no exact duplicates.
+        /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BookmarkId { get; set; }
 
-        // The user associated with the bookmark
+        /// <summary>
+        /// Used to tie a bookmark to a specific user, effectively a secondary key.
+        /// </summary>
         [Required]
         public string UserId { get; set; }
-
-        // The coding language that a bookmark is from
+        
+        /// <summary>
+        /// Determines what coding language a bookmark is from.
+        /// </summary>
         [Required]
         public string BookmarkType { get; set; }
 
-        // The internal name of the bookmark, will help provide
-        // a working clickable link when displayed on a webpage
         [Required]
         public string BookmarkName { get; set; }
 
-        // The name of the bookmark that is displayed on
-        // a webpage
+        /// <summary>
+        /// Used in very specific places to display text stored in a bookmark.
+        /// </summary>
         [Required]
         public string BookmarkDisplay { get; set; }
     }
