@@ -16,7 +16,6 @@
         <h2>HTML Sections</h2>
         <ul>
             @{
-                // If there are no sections
                 if (@Model?.Sections == null)
                 {
                     <li>
@@ -25,10 +24,8 @@
                 }
                 else
                 {
-                    // For every section that needs to be displayed
                     foreach (Section s in @Model?.Sections)
                     {
-                        // Creates a clickable that takes you to the specified section
                         <li>
                             <form method="post" asp-controller="Sections" asp-action="HTMLIndex">
                                 <input type="hidden" name="sectionName" value="@s.SectionName" />
@@ -45,12 +42,11 @@
 
     <!-- Section for most webpage content -->
     <div class="content">
-        @Html.Raw(@Model.SectionToDisplay.SectionHTML) <!-- This should display everything located in the SectionHTML property of the chosen Section! -->
+        @Html.Raw(@Model.SectionToDisplay.SectionHTML)
     </div>
 
     <!-- The right sidebar -->
     <div class="sidebar right">
-        <!-- If the current page is a bookmark, display delete button, if not, display add button. -->
         @{
             int numericCheck = 0;
             if (@Model?.Bookmarks == null)
@@ -61,30 +57,26 @@
             {
                 foreach (Bookmark b in @Model?.Bookmarks)
                 {
-                    // Increases numericCheck if the displayed page is also a bookmark
                     if (b.BookmarkDisplay == Model.SectionToDisplay.SectionDisplay)
                     {
                         numericCheck = numericCheck + 1;
                     }
                 }
 
-                // If numericCheck is not 0, a bookmark is currently being displayed
                 if (numericCheck != 0)
                 {
-                    // Display "Delete Bookmark" button for the currently displayed section
                     <form method="post" asp-controller="Sections" asp-action="DeleteBookmark">
                         <input type="hidden" name="bookmarkName" value="@Model.SectionToDisplay.SectionName" />
-                        <button type="submit" class="nav-link">
+                        <button type="submit" class="nav-link red-button">
                             Delete Bookmark
                         </button>
                     </form>
                 }
                 else
                 {
-                    // Display "Add Bookmark" button for the currently displayed section
                     <form method="post" asp-controller="Sections" asp-action="AddBookmark">
                         <input type="hidden" name="bookmarkName" value="@Model.SectionToDisplay.SectionName" />
-                        <button type="submit" class="nav-link">
+                        <button type="submit" class="nav-link green-button">
                             Add Bookmark
                         </button>
                     </form>
@@ -95,7 +87,6 @@
         <h2>Your Bookmarks:</h2>
         <ul>
             @{
-                // If there are no bookmarks
                 if (@Model?.Bookmarks == null)
                 {
                     <li>
@@ -104,10 +95,8 @@
                 }
                 else
                 {
-                    // For every bookmark that needs to be displayed
                     foreach (Bookmark b in @Model?.Bookmarks)
                     {
-                        // Creates a clickable that takes you to the specified bookmark (for HTML bookmarks)
                         if (b.BookmarkType == "HTML")
                         {
                             <li>
@@ -119,7 +108,6 @@
                                 </form>
                             </li>
                         }
-                        // Creates a clickable that takes you to the specified bookmark (for CSS bookmarks)
                         else if (b.BookmarkType == "CSS")
                         {
                             <li>
@@ -131,7 +119,6 @@
                                 </form>
                             </li>
                         }
-                        // Creates a clickable that takes you to the specified bookmark (for Javascript bookmarks)
                         else if (b.BookmarkType == "Javascript")
                         {
                             <li>
