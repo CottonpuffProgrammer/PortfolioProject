@@ -158,3 +158,19 @@ needed thanks to seeding data.
 
 - Added the ability for users to add and delete 
 bookmarks, all on one clickable button.
+
+--------------------------------------------------
+
+## Week 9 (8th Sprint):
+
+### 3/10/2025 - 4 hours:
+
+- Cleaned up comments across the entire project, 
+XML documentation is now used and C# comments now 
+only exists for complex chunks of code.
+
+- Provided a valid return URL for when a user adds 
+or deletes a bookmark.
+
+- Added color to the Add/Delete button for bookmarks
+for clarity.
