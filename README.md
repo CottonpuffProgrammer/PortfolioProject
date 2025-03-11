@@ -8,7 +8,7 @@ The goal of my project is to create a website where people can create an account
 
 ## The Current Goal:
 
-Use XML documentation comments for commenting code instead of standard comments, provide a valid return URL when adding a bookmark, fix other small issues.
+Implement a Web API, possibly add some styling, and fix any other small issues I come across.
 
 
 --------------------------------------------------
