@@ -16,19 +16,10 @@ namespace PortfolioProject.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
 
-        private readonly JokeAPIService _jokeAPIservice;
-
-        public SectionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, JokeAPIService jokeAPIService)
+        public SectionsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _userManager = userManager;
-            _jokeAPIservice = jokeAPIService;
-        }
-
-        public async Task<IActionResult> ProgrammingJokes()
-        {
-            var joke = await _jokeAPIservice.GetJokeAsync();
-            return View("ProgrammingJokes", joke);
         }
 
         /// <summary>
